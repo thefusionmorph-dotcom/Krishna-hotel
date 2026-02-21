@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { RESTAURANT_INFO } from '../constants';
 import { ChevronDown } from 'lucide-react';
+import { HashLink } from 'react-router-hash-link';
 
 export default function Hero() {
   return (
@@ -57,18 +58,20 @@ export default function Hero() {
           transition={{ delay: 1.5, duration: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <a
-            href="#order"
-            className="bg-haldi text-maroon px-8 py-4 rounded-full font-bold text-sm tracking-widest hover:bg-yellow-400 transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+          <HashLink
+            smooth
+            to="/#order"
+            className="bg-haldi text-maroon px-8 py-4 rounded-full font-bold text-sm tracking-widest hover:bg-yellow-400 transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto inline-block"
           >
             ORDER NOW
-          </a>
-          <a
-            href="#contact"
-            className="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-sm tracking-widest hover:bg-white hover:text-maroon transition-all transform hover:scale-105 backdrop-blur-sm w-full sm:w-auto"
+          </HashLink>
+          <HashLink
+            smooth
+            to="/#contact"
+            className="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-sm tracking-widest hover:bg-white hover:text-maroon transition-all transform hover:scale-105 backdrop-blur-sm w-full sm:w-auto inline-block"
           >
             BOOK A TABLE
-          </a>
+          </HashLink>
         </motion.div>
       </div>
 

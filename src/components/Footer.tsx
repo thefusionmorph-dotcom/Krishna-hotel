@@ -1,5 +1,6 @@
 import { RESTAURANT_INFO } from '../constants';
 import { Instagram, Facebook, Twitter } from 'lucide-react';
+import { HashLink } from 'react-router-hash-link';
 
 export default function Footer() {
   return (
@@ -23,11 +24,11 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
             <ul className="space-y-3 text-gray-400 text-sm">
-              <li><a href="#home" className="hover:text-haldi transition-colors">Home</a></li>
-              <li><a href="#about" className="hover:text-haldi transition-colors">About Us</a></li>
-              <li><a href="#menu" className="hover:text-haldi transition-colors">Menu</a></li>
-              <li><a href="#gallery" className="hover:text-haldi transition-colors">Gallery</a></li>
-              <li><a href="#contact" className="hover:text-haldi transition-colors">Book a Table</a></li>
+              <li><HashLink smooth to="/#home" className="hover:text-haldi transition-colors">Home</HashLink></li>
+              <li><HashLink smooth to="/#about" className="hover:text-haldi transition-colors">About Us</HashLink></li>
+              <li><HashLink smooth to="/#menu" className="hover:text-haldi transition-colors">Menu</HashLink></li>
+              <li><HashLink smooth to="/#gallery" className="hover:text-haldi transition-colors">Gallery</HashLink></li>
+              <li><HashLink smooth to="/#contact" className="hover:text-haldi transition-colors">Book a Table</HashLink></li>
             </ul>
           </div>
 

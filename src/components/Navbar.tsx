@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, ShoppingBag } from 'lucide-react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
+import { HashLink } from 'react-router-hash-link';
 import { RESTAURANT_INFO } from '../constants';
 
 export default function Navbar() {
@@ -16,11 +17,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Menu', href: '#menu' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/#home' },
+    { name: 'About', href: '/#about' },
+    { name: 'Menu', href: '/#menu' },
+    { name: 'Gallery', href: '/#gallery' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -32,45 +33,58 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <motion.a
-            href="#"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+          <HashLink
+            smooth
+            to="/#home"
             className="flex flex-col"
           >
-            <span className={`text-2xl font-bold font-serif ${scrolled ? 'text-maroon' : 'text-white'}`}>
-              {RESTAURANT_INFO.name}
-            </span>
-            <span className={`text-xs tracking-widest uppercase ${scrolled ? 'text-gray-600' : 'text-white/80'}`}>
-              {RESTAURANT_INFO.subName}
-            </span>
-          </motion.a>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+            >
+              <span className={`text-2xl font-bold font-serif ${scrolled ? 'text-maroon' : 'text-white'}`}>
+                {RESTAURANT_INFO.name}
+              </span>
+              <span className={`text-xs tracking-widest uppercase block ${scrolled ? 'text-gray-600' : 'text-white/80'}`}>
+                {RESTAURANT_INFO.subName}
+              </span>
+            </motion.div>
+          </HashLink>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link, index) => (
-              <motion.a
+              <HashLink
                 key={link.name}
-                href={link.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                smooth
+                to={link.href}
                 className={`text-sm font-medium tracking-wide hover:text-haldi transition-colors ${
                   scrolled ? 'text-gray-800' : 'text-white'
                 }`}
               >
-                {link.name.toUpperCase()}
-              </motion.a>
+                <motion.span
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {link.name.toUpperCase()}
+                </motion.span>
+              </HashLink>
             ))}
-            <motion.a
-              href="#order"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <HashLink
+              smooth
+              to="/#order"
               className="bg-haldi text-maroon px-6 py-2 rounded-full font-bold text-sm shadow-lg hover:bg-yellow-400 transition-colors flex items-center gap-2"
             >
-              <ShoppingBag size={16} />
-              ORDER ONLINE
-            </motion.a>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2"
+              >
+                <ShoppingBag size={16} />
+                ORDER ONLINE
+              </motion.div>
+            </HashLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -96,22 +110,24 @@ export default function Navbar() {
           >
             <div className="px-4 pt-2 pb-8 space-y-4 text-center">
               {navLinks.map((link) => (
-                <a
+                <HashLink
                   key={link.name}
-                  href={link.href}
+                  smooth
+                  to={link.href}
                   onClick={() => setIsOpen(false)}
                   className="block py-2 text-lg font-medium hover:text-haldi"
                 >
                   {link.name}
-                </a>
+                </HashLink>
               ))}
-              <a
-                href="#order"
+              <HashLink
+                smooth
+                to="/#order"
                 onClick={() => setIsOpen(false)}
                 className="inline-block bg-haldi text-maroon px-8 py-3 rounded-full font-bold mt-4"
               >
                 ORDER ONLINE
-              </a>
+              </HashLink>
             </div>
           </motion.div>
         )}
